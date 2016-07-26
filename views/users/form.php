@@ -34,6 +34,12 @@
                 <strong>Error!</strong> User with this email is already exists.
             </div>
         <?php endif; ?>
+        <?php if($userCreated): ?>
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> User created successfully!
+            </div>
+        <?php endif; ?>
         <h1>Add user</h1>
     </div>
     <div class="row">

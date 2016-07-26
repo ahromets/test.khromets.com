@@ -38,6 +38,12 @@
         </div>
     <?php else: ?>
     <div class="row">
+        <?php if($articleCreated): ?>
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> Article created successfully!
+            </div>
+        <?php endif; ?>
         <h1>Add article</h1>
     </div>
     <div class="row">

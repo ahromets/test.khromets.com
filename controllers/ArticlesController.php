@@ -18,6 +18,7 @@ class ArticlesController
     public function actionCreate()
     {
         $articleError = false;
+        $articleCreated = false;
         $users = Users::getUsersList();
 
         if (!empty($_POST)) {
@@ -28,6 +29,8 @@ class ArticlesController
             $createArticle = Articles::createArticle($article);
             if (!$createArticle) {
                 $articleError = true;
+            } else {
+                $articleCreated = true;
             }
         }
         require_once(ROOT . '/views/articles/form.php');

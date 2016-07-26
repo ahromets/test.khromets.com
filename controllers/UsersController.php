@@ -17,6 +17,7 @@ class UsersController
     public function actionCreate()
     {
         $userExists = false;
+        $userCreated = false;
 
         if (!empty($_POST)) {
             $user = array();
@@ -26,6 +27,8 @@ class UsersController
             $createUser = Users::CreateUser($user);
             if (!$createUser) {
                 $userExists = true;
+            } else {
+                $userCreated = true;
             }
         }
 
