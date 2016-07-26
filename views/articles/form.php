@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>Test site</title>
 
     <!-- Bootstrap -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -27,8 +27,18 @@
 <hr>
 
 <div class="container">
+    <?php if ($articleError): ?>
+        <div class="row">
+            <h1>Error</h1>
+        </div>
+        <div class="row">
+            <div class="alert alert-danger">
+                <strong>Error!</strong> Not found any users. Please add user first.
+            </div>
+        </div>
+    <?php else: ?>
     <div class="row">
-        <h1>Hello, world!</h1>
+        <h1>Add article</h1>
     </div>
     <div class="row">
         <form role="form" action="create" method="post">
@@ -47,14 +57,21 @@
                        required>
             </div>
             <div class="form-group">
+                <label for="text">Description:</label>
+                <textarea name="description" class="form-control" id="description" cols="30" rows="3" maxlength="255"
+                          placeholder="Enter description of article" required></textarea>
+            </div>
+            <div class="form-group">
                 <label for="text">Text:</label>
-                <textarea name="text" class="form-control" id="text" cols="30" rows="10"
+                <textarea name="text" class="form-control" id="text" cols="30" rows="8"
                           placeholder="Enter text of article" required></textarea>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
+    <br>
 </div>
+<?php endif; ?>
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

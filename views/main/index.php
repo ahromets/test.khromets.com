@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-
+    <title>Test site</title>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,7 +36,8 @@
 
 <div class="container">
     <div class="row">
-        <h1>Hello, world!</h1>
+        <h1>Users and their articles</h1>
+        <h3>Displaying users who has at least 1 article</h3>
     </div>
     <div class="row">
         <table id="usersTable" class="table table-striped table-bordered" cellspacing="0" width="100%">

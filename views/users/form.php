@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>Test site</title>
 
     <!-- Bootstrap -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +28,13 @@
 
 <div class="container">
     <div class="row">
-        <h1>Hello, world!</h1>
+        <?php if ($userExists): ?>
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong> User with this email is already exists.
+            </div>
+        <?php endif; ?>
+        <h1>Add user</h1>
     </div>
     <div class="row">
         <form role="form" action="create" method="post">
@@ -49,6 +55,7 @@
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
+    <br>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

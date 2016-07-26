@@ -5,19 +5,33 @@ include_once ROOT . '/models/Users.php';
 
 class ArticlesController
 {
+    public function actionView($id)
+    {
+        if ($id) {
+            $articleItem = Articles::getArticlesItemById($id);
+        }
+        require_once(ROOT . '/views/articles/index.php');
+
+        return true;
+    }
+
     public function actionCreate()
     {
+        $articleError = false;
         $users = Users::getUsersList();
-        if (isset($_POST)) {
+
+        if (!empty($_POST)) {
             $article = array();
             foreach ($_POST as $key => $value) {
                 $article[$key] = $value;
             }
             $createArticle = Articles::createArticle($article);
             if (!$createArticle) {
-//                echo 'Error!';
+                $articleError = true;
             }
         }
         require_once(ROOT . '/views/articles/form.php');
+
+        return true;
     }
 }

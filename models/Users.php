@@ -24,12 +24,19 @@ class Users
         }
     }
 
+    /**
+     * Returnes articles by user id
+     * @param $userId
+     * @return mixed
+     */
     public static function getUserArticles($userId)
     {
+        $userId = intval($userId);
+
         $db = Db::getConnection();
 
         $usersList = array();
-        $sql = "SELECT user.id, user.first_name, user.last_name, user.email, article.title, article.text, article.public_date 
+        $sql = "SELECT user.id as user_id, user.first_name, user.last_name, user.email, article.id as article_id, article.title, article.description, article.text, article.public_date 
 FROM `article` 
 INNER JOIN user ON user.id = article.author_id
 WHERE user.id = :userId";
@@ -40,11 +47,13 @@ WHERE user.id = :userId";
 
         $i = 0;
         while ($row = $result->fetch()) {
-            $userArticles[$i]['id'] = $row['id'];
+            $userArticles[$i]['user_id'] = $row['user_id'];
+            $userArticles[$i]['article_id'] = $row['article_id'];
             $userArticles[$i]['first_name'] = $row['first_name'];
             $userArticles[$i]['last_name'] = $row['last_name'];
             $userArticles[$i]['email'] = $row['email'];
             $userArticles[$i]['title'] = $row['title'];
+            $userArticles[$i]['description'] = $row['description'];
             $userArticles[$i]['text'] = $row['text'];
             $userArticles[$i]['public_date'] = $row['public_date'];
             $i++;
@@ -76,6 +85,11 @@ WHERE user.id = :userId";
         return $usersList;
     }
 
+    /**
+     * Returns validated and filtered user data
+     * @param $userData
+     * @return mixed
+     */
     public static function validateUser($userData)
     {
         foreach ($userData as $key=>$value) {
@@ -87,6 +101,11 @@ WHERE user.id = :userId";
         return $userValidate;
     }
 
+    /**
+     * Check user email for non exists
+     * @param $arr
+     * @return bool
+     */
     public static function checkUserEmail($arr)
     {
         $db = Db::getConnection();
@@ -106,6 +125,11 @@ WHERE user.id = :userId";
             return $emailAlreadyExists;
     }
 
+    /**
+     * Creates a new user
+     * @param $arr
+     * @return bool
+     */
     public static function CreateUser($arr)
     {        
         if($arr) {
@@ -131,5 +155,6 @@ WHERE user.id = :userId";
                 $stmt->execute($arr);
             }
         }
+        return true;
     }
 }

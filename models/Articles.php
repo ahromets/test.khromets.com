@@ -14,7 +14,14 @@ class Articles
         if ($id) {
             $db = Db::getConnection();
 
-            $result = $db->query('SELECT * FROM article WHERE id=' . $id);
+            $sql = "SELECT user.id as user_id, user.first_name, user.last_name, user.email, article.id as article_id, article.title, article.description, article.text, article.public_date 
+FROM `article` 
+INNER JOIN user ON user.id = article.author_id
+WHERE article.id = :id";
+            $result = $db->prepare($sql);
+            $result->execute(array(
+                'id' => $id,
+            ));
 
             $articlesItem = $result->fetch();
 
@@ -37,6 +44,7 @@ class Articles
         while ($row = $result->fetch()) {
             $articlesList[$i]['id'] = $row['id'];
             $articlesList[$i]['title'] = $row['title'];
+            $articlesList[$i]['description'] = $row['description'];
             $articlesList[$i]['text'] = $row['text'];
             $articlesList[$i]['author_id'] = $row['author_id'];
             $articlesList[$i]['public_date'] = $row['public_date'];
@@ -46,6 +54,11 @@ class Articles
         return $articlesList;
     }
 
+    /**
+     * Returns validated and filtered article data
+     * @param $articleData
+     * @return mixed
+     */
     public static function validateArticle($articleData)
     {
         foreach ($articleData as $key => $value) {
@@ -57,6 +70,11 @@ class Articles
         return $articleValidate;
     }
 
+    /**
+     * Creates a new article
+     * @param $arr
+     * @return bool
+     */
     public static function createArticle($arr)
     {
         if ($arr) {
@@ -64,18 +82,24 @@ class Articles
             $db = Db::getConnection();
 
             $title = $arr['title'];
+            $description = $arr['description'];
             $text = $arr['text'];
             $author_id = $arr['author_id'];
 
             $arr = array(
                 'title' => $title,
+                'description' => $description,
                 'text' => $text,
                 'author_id' => $author_id,
             );
 
-            $sql = "INSERT INTO article (title, text, author_id) VALUES (:title, :text, :author_id)";
+            $sql = "INSERT INTO article (title, description, text, author_id) VALUES (:title, :description, :text, :author_id)";
             $stmt = $db->prepare($sql);
             $stmt->execute($arr);
+
+            return true;
+        } else {
+            return false;
         }
     }
 }

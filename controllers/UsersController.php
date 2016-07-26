@@ -16,6 +16,8 @@ class UsersController
 
     public function actionCreate()
     {
+        $userExists = false;
+
         if (!empty($_POST)) {
             $user = array();
             foreach ($_POST as $key => $value) {
@@ -23,7 +25,7 @@ class UsersController
             }
             $createUser = Users::CreateUser($user);
             if (!$createUser) {
-                echo 'Email is already exists!';
+                $userExists = true;
             }
         }
 

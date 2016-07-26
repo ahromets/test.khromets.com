@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>Test site</title>
 
     <!-- Bootstrap -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -30,16 +30,17 @@
     <div class="row">
         <h1>Articles by <?= $user[0]['first_name'] . ' ' . $user[0]['last_name'] ?></h1>
     </div>
-        <?php foreach ($user as $articleItem): ?>
-            <div class="row">
-                <h2><?= $articleItem['title'] ?></h2>
-                <p><?= $articleItem['public_date'] ?> by <?= $articleItem['first_name'] . ' ' . $articleItem['last_name'] ?>
-                </p>
+    <?php foreach ($user as $articleItem): ?>
+        <div class="row">
+            <h2><?= $articleItem['title'] ?></h2>
+            <p><?= $articleItem['public_date'] ?> by <a href="/users/<?= $articleItem['user_id'] ?>"><?= $articleItem['first_name'] . ' ' . $articleItem['last_name'] ?></a>
+            </p>
 
-                <p><?= $articleItem['text'] ?></p>
-            </div><!-- /.blog-post -->
-            <hr>
-        <?php endforeach; ?>
+            <p><?= $articleItem['description'] ?></p>
+            <p><a href="/articles/<?= $articleItem['article_id'] ?>">Read more</a></p>
+        </div><!-- /.blog-post -->
+        <hr>
+    <?php endforeach; ?>
 </div>
 
 
