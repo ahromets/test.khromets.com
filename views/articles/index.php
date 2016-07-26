@@ -21,12 +21,19 @@
 
 <ul class="nav nav-pills">
     <li role="presentation"><a href="/">Home</a></li>
-    <li role="presentation"><a href="/users/create">Add user</a></li>
-    <li role="presentation"><a href="/articles/create">Add article</a></li>
+    <li role="presentation"><a href="/users/create">Create user</a></li>
+    <li role="presentation"><a href="/articles/create">Create article</a></li>
 </ul>
 <hr>
 
 <div class="container">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/users/<?= $articleItem['user_id'] ?>"><?= $articleItem['first_name'] . ' ' . $articleItem['last_name'] ?></a></li>
+            <li class="active">Article</a></li>
+        </ol>
+    </div>
     <div class="row">
         <h1><?= $articleItem['title'] ?></h1>
     </div>

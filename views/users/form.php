@@ -21,12 +21,18 @@
 
 <ul class="nav nav-pills">
     <li role="presentation"><a href="/">Home</a></li>
-    <li role="presentation" class="active"><a href="/users/create">Add user</a></li>
-    <li role="presentation"><a href="/articles/create">Add article</a></li>
+    <li role="presentation" class="active"><a href="/users/create">Create user</a></li>
+    <li role="presentation"><a href="/articles/create">Create article</a></li>
 </ul>
 <hr>
 
 <div class="container">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Create User</li>
+        </ol>
+    </div>
     <div class="row">
         <?php if ($userExists): ?>
             <div class="alert alert-danger">
@@ -40,7 +46,7 @@
                 <strong>Success!</strong> User created successfully!
             </div>
         <?php endif; ?>
-        <h1>Add user</h1>
+        <h1>Create user</h1>
     </div>
     <div class="row">
         <form role="form" action="create" method="post">

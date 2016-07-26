@@ -21,19 +21,25 @@
 
 <ul class="nav nav-pills">
     <li role="presentation"><a href="/">Home</a></li>
-    <li role="presentation"><a href="/users/create">Add user</a></li>
-    <li role="presentation" class="active"><a href="/articles/create">Add article</a></li>
+    <li role="presentation"><a href="/users/create">Create user</a></li>
+    <li role="presentation" class="active"><a href="/articles/create">Create article</a></li>
 </ul>
 <hr>
 
 <div class="container">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Create article</li>
+        </ol>
+    </div>
     <?php if ($articleError): ?>
         <div class="row">
             <h1>Error</h1>
         </div>
         <div class="row">
             <div class="alert alert-danger">
-                <strong>Error!</strong> Not found any users. Please add user first.
+                <strong>Error!</strong> Not found any users. Please Create user first.
             </div>
         </div>
     <?php else: ?>
@@ -44,7 +50,7 @@
                 <strong>Success!</strong> Article created successfully!
             </div>
         <?php endif; ?>
-        <h1>Add article</h1>
+        <h1>Create article</h1>
     </div>
     <div class="row">
         <form role="form" action="create" method="post">
