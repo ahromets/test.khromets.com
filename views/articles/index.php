@@ -1,7 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: hrom
- * Date: 25.07.16
- * Time: 15:17
- */
+<a href="/">Home</a>
+<a href="/users/create">Add user</a>
+<a href="/articles/create">Add article</a>
+<hr>

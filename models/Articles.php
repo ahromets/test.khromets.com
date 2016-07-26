@@ -15,7 +15,6 @@ class Articles
             $db = Db::getConnection();
 
             $result = $db->query('SELECT * FROM article WHERE id=' . $id);
-            $result->setFetchMode(PDO::FETCH_ASSOC);
 
             $articlesItem = $result->fetch();
 

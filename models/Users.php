@@ -24,6 +24,35 @@ class Users
         }
     }
 
+    public static function getUserArticles($userId)
+    {
+        $db = Db::getConnection();
+
+        $usersList = array();
+        $sql = "SELECT user.id, user.first_name, user.last_name, user.email, article.title, article.text, article.public_date 
+FROM `article` 
+INNER JOIN user ON user.id = article.author_id
+WHERE user.id = :userId";
+        $result = $db->prepare($sql);
+        $result->execute(array(
+            'userId' => $userId,
+        ));
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $userArticles[$i]['id'] = $row['id'];
+            $userArticles[$i]['first_name'] = $row['first_name'];
+            $userArticles[$i]['last_name'] = $row['last_name'];
+            $userArticles[$i]['email'] = $row['email'];
+            $userArticles[$i]['title'] = $row['title'];
+            $userArticles[$i]['text'] = $row['text'];
+            $userArticles[$i]['public_date'] = $row['public_date'];
+            $i++;
+        }
+
+        return $userArticles;
+    }
+
     /**
      * Returns an array of users
      */
